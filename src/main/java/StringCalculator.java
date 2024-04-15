@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class StringCalculator {
 
     private final Logger logger;
@@ -12,6 +15,7 @@ public class StringCalculator {
 
     public int add(String input) throws IllegalArgumentException {
         int sum=0;
+        List<Object> loggedNumbers = new ArrayList<>();
         if(!input.isEmpty()) {
             String[] numbers;
             if(input.startsWith("//")){
@@ -26,6 +30,10 @@ public class StringCalculator {
                 int num = Integer.parseInt(number);
                 if(num<0){
                     throw new IllegalArgumentException("Negatives not allowed: " + num);
+                }
+                else if(num>=1000&&!loggedNumbers.contains(num)){
+                    logger.log(num);
+                    loggedNumbers.add(num);
                 }
                 sum += num;
             }
