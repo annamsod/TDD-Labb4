@@ -23,7 +23,12 @@ public class StringCalculatorCLI {
         Scanner scanner = new Scanner(inputStream);
         PrintStream out = new PrintStream(outputStream);
 
-        out.println("Welcome!\n");
+        out.println("""
+                Welcome!
+                To use the program enter a string looking like this: "scalc ‘1,2,3’"
+                The program will return the sum of the numbers.
+                To exit type "exit"\s
+                """);
 
         StringCalculator calculator = new StringCalculator();
 

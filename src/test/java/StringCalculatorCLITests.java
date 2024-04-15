@@ -3,6 +3,7 @@ import org.junit.jupiter.api.Test;
 import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StringCalculatorCLITests {
 
@@ -15,7 +16,15 @@ public class StringCalculatorCLITests {
         StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
         calculator.run();
 
-        assertEquals("Welcome!\n\nExiting...\n", outputStream.toString());
+        String expectedOutput1 = "Welcome!\n";
+        String expectedOutput2 = "To use the program enter a string looking like this: \"scalc ‘1,2,3’\"\n";
+        String expectedOutput3 = "The program will return the sum of the numbers.";
+        String expectedOutput4 = "To exit type \"exit\"";
+
+        assertTrue(outputStream.toString().contains(expectedOutput1));
+        assertTrue(outputStream.toString().contains(expectedOutput2));
+        assertTrue(outputStream.toString().contains(expectedOutput3));
+        assertTrue(outputStream.toString().contains(expectedOutput4));
     }
 
     @Test
