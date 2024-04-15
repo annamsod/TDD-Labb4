@@ -23,9 +23,10 @@ public class StringCalculatorCLI {
         Scanner scanner = new Scanner(inputStream);
         PrintStream out = new PrintStream(outputStream);
 
-        //TODO print welcome message
+        out.println("Welcome!\n");
 
         StringCalculator calculator = new StringCalculator();
+
         // Loop until the user inputs "exit"
         while (true) {
             String input = scanner.nextLine(); // Read the next line of input

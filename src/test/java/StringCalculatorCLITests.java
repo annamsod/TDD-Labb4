@@ -5,6 +5,19 @@ import java.io.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StringCalculatorCLITests {
+
+    @Test
+    public void testWelcomeText(){
+        String input = "exit\n";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
+        calculator.run();
+
+        assertEquals("Welcome!\n\nExiting...\n", outputStream.toString());
+    }
+
     @Test
     public void testEmptyNumberString() {
 
