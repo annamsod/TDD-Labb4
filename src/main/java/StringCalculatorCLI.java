@@ -43,9 +43,13 @@ public class StringCalculatorCLI {
 
             // Process the input
             //TODO Handle "scalc"-formatted string
+            else if (input.startsWith("scalc ")) {
+                input=input.substring(input.indexOf("'")+1, input.lastIndexOf("'"));
+
+            }
             var result = calculator.add(input);
 
-            out.println(result);
+            out.println("The result is "+ result);
         }
 
         scanner.close();
