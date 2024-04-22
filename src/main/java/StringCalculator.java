@@ -22,7 +22,12 @@ public class StringCalculator {
         if(!input.isEmpty()) {
             String[] numbers;
             if(input.startsWith("//")){
-                if(input.indexOf("n")==4) {
+                if(input.indexOf('\n')==3) {
+                    char divider = input.charAt(2);
+                    String newString = input.substring(input.indexOf('\n') + 1);
+                    numbers = newString.split(String.valueOf(divider));
+                }
+                else if(input.indexOf("n")==4) {
                     char divider = input.charAt(2);
                     String newString = input.substring(input.indexOf("n") + 1);
                     numbers = newString.split(String.valueOf(divider));
