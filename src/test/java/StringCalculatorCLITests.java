@@ -159,4 +159,58 @@ public class StringCalculatorCLITests {
 
         assertEquals(expectedOut,actualOut);
     }
+
+    @Test
+    public void testComplexNumberStrings1() {
+        String input = "scalc '//;\\n1;2;4'\nexit";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
+        calculator.run();
+
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "The result is 7" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
+
+        assertEquals(expectedOut,actualOut);
+    }
+
+    @Test
+    public void testComplexNumberStrings2() {
+        String input = "scalc '//[***][%%%]\\n1***2%%%4'\nexit";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
+        calculator.run();
+
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "The result is 7" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
+
+        assertEquals(expectedOut,actualOut);
+    }
+
+    @Test
+    public void testComplexNumberStrings3() {
+        String input = "scalc '//[*][%%][xyz]\\n1*2%%4xyz5'\nexit";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
+        calculator.run();
+
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "The result is 12" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
+
+        assertEquals(expectedOut,actualOut);
+    }
 }

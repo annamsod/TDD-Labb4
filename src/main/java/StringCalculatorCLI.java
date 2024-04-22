@@ -45,6 +45,9 @@ public class StringCalculatorCLI {
             // Process the input
             //TODO Handle "scalc"-formatted string
             else if (input.startsWith("scalc ")) {
+                if(input.startsWith("//")){
+                    input=input.replaceAll("\\n", "\n");
+                }
                 input=input.substring(input.indexOf("'")+1, input.lastIndexOf("'"));
 
             }

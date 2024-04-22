@@ -1,5 +1,8 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class StringCalculator {
 
@@ -19,9 +22,19 @@ public class StringCalculator {
         if(!input.isEmpty()) {
             String[] numbers;
             if(input.startsWith("//")){
-                char divider = input.charAt(2);
-                String newString = input.substring(input.indexOf("\n")+1);
-                numbers = newString.split(String.valueOf(divider));
+                if(input.indexOf("n")==4) {
+                    char divider = input.charAt(2);
+                    String newString = input.substring(input.indexOf("n") + 1);
+                    numbers = newString.split(String.valueOf(divider));
+                }
+                else{
+                    String[] delimerters = (input.substring(3,input.lastIndexOf(']')).split("]\\["));
+                    String num = input.substring(input.lastIndexOf(']') + 3);
+                    for(String del : delimerters) {
+                        num = num.replace(del, ",");
+                    }
+                    numbers = num.split("[, \n]");
+                }
             }
             else {
                 numbers = input.split("[, \n]");
