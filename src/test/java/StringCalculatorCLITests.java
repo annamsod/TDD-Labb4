@@ -9,7 +9,7 @@ public class StringCalculatorCLITests {
 
     @Test
     public void testWelcomeText(){
-        String input = "exit\n";
+        String input = "exit";
         InputStream inputStream = new ByteArrayInputStream(input.getBytes());
         OutputStream outputStream = new ByteArrayOutputStream();
 
