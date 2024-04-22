@@ -37,8 +37,11 @@ public class StringCalculatorCLITests {
         StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
         calculator.run();
 
-        String expectedOut = "The result is 0" + System.lineSeparator() +"Exiting..." +System.lineSeparator();
-        String actualOut = outputStream.toString().substring(outputStream.toString().lastIndexOf("The"));
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "The result is 0" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
 
         assertEquals(expectedOut,actualOut);
     }
@@ -54,8 +57,11 @@ public class StringCalculatorCLITests {
         StringCalculatorCLI calculator = new StringCalculatorCLI();
         calculator.run();
 
-        String expectedOut = "The result is 0" + System.lineSeparator() +"Exiting..." +System.lineSeparator();
-        String actualOut = outputStream.toString().substring(outputStream.toString().lastIndexOf("The"));
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "The result is 0" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
 
         assertEquals(expectedOut,actualOut);
 
@@ -70,8 +76,11 @@ public class StringCalculatorCLITests {
         StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
         calculator.run();
 
-        String expectedOut = "The result is 6" + System.lineSeparator() +"Exiting..." +System.lineSeparator();
-        String actualOut = outputStream.toString().substring(outputStream.toString().lastIndexOf("The"));
+        String expectedOut ="Enter your input: " + System.lineSeparator() +
+                "The result is 6" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
 
         assertEquals(expectedOut,actualOut);
     }
@@ -85,10 +94,69 @@ public class StringCalculatorCLITests {
         StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
         calculator.run();
 
-        String expectedOut = "The result is 21" + System.lineSeparator() +"Exiting..." +System.lineSeparator();
-        String actualOut = outputStream.toString().substring(outputStream.toString().lastIndexOf("The"));
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "The result is 21" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
 
         assertEquals(expectedOut,actualOut);
     }
 
+    @Test
+    public void testMultipleNumberStrings1() {
+        String input = "scalc '1,2,3'\nscalc '2,3,4'\nexit";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
+        calculator.run();
+
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "The result is 6" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "The result is 9" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
+
+        assertEquals(expectedOut,actualOut);
+    }
+
+    @Test
+    public void testMultipleNumberStringsEnterToExit() {
+        String input = "scalc '1,2,3'\nscalc '2,3,4'\n\n";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
+        calculator.run();
+
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "The result is 6" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "The result is 9" + System.lineSeparator() +
+                "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
+
+        assertEquals(expectedOut,actualOut);
+    }
+
+    @Test
+    public void testExitWithEnter() {
+
+        String input = "\n";
+        InputStream inputStream = new ByteArrayInputStream(input.getBytes());
+        OutputStream outputStream = new ByteArrayOutputStream();
+
+        StringCalculatorCLI calculator = new StringCalculatorCLI(inputStream, outputStream);
+        calculator.run();
+
+        String expectedOut = "Enter your input: " + System.lineSeparator() +
+                "Exiting..." +System.lineSeparator();
+        String actualOut = outputStream.toString().substring(outputStream.toString().indexOf("Enter"));
+
+        assertEquals(expectedOut,actualOut);
+    }
 }

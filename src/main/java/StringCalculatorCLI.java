@@ -34,10 +34,11 @@ public class StringCalculatorCLI {
 
         // Loop until the user inputs "exit"
         while (true) {
+            out.println("Enter your input: ");
             String input = scanner.nextLine(); // Read the next line of input
 
             // Check if the user wants to exit
-            if ("exit".equalsIgnoreCase(input)) {
+            if ("exit".equalsIgnoreCase(input) || input.isEmpty()) {
                 break; // Exit the loop
             }
 
